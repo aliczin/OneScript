@@ -117,7 +117,8 @@
 
   <Target AfterTargets="Publish" Name="InstallStandartLibrary">
     <Message Importance="High" Text="Installing standart library directly from hub.oscript"/>
-    <Exec Command="echo ending publish" />
+    <Exec Command="$(PublishDir)\opm install opm@1.0.2" />
+    
   </Target>
 
 </Project>
