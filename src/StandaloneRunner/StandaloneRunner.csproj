@@ -37,9 +37,10 @@
     <Delete Files="@(EmbeddedResource)" />
   </Target>
   
-  <Target Name="CopyToOscript" AfterTargets="Build" Condition="'$(TargetFramework)' == 'net452'">
+  <Target Name="CopyToOscript" AfterTargets="Build">
     <Message Text="Copying StandaloneRunner output" />
-    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(SolutionDir)oscript\" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="..\oscript\" />
+    <Copy SourceFiles="$(TargetDir)\StandaloneRunner.exe" DestinationFolder="..\oscript\" />
   </Target>
   
 </Project>

@@ -23,7 +23,8 @@ namespace oscript
 		public static int Main(string[] args)
 		{
 			int returnCode;
-
+			System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+			
 			var behavior = BehaviorSelector.Select(args);
 			try
 			{
