@@ -3,7 +3,8 @@ name: Build .NET Core
 on:
   push:
     branches:
-      - compiler-v2-with-publish
+      - develop
+      - feature/compiler-v2-with-publish
 
 env:
   MAIN_PROJECT: ./src/oscript/oscript.csproj
