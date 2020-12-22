@@ -2,7 +2,7 @@
 
 echo "Local FULL publish for each platform, with testing script-engine (not xunit) by 1testrunner and archive artifacts"
 
-call dotnet clean src\1Script.sln
+call dotnet clean src\oscript\oscript.csproj
 
 call rmdir distrs /s /q
 
