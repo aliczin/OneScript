@@ -118,7 +118,7 @@
   <Target Name="ZipArtifacts" AfterTargets="InstallStandartLibrary">
         <ZipDirectory
             SourceDirectory="$(PublishDir)..\"
-            DestinationFile="$(PublishDir)\..\..\oscript-$(RuntimeIdentifier).zip" />
+            DestinationFile="$(PublishDir)\..\..\oscript.v2-$(RuntimeIdentifier).zip" />
     </Target>
 
 </Project>
