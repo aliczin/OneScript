@@ -112,7 +112,7 @@
 
   <Target AfterTargets="Publish" Name="InstallStandartLibrary">
     <Message Importance="High" Text="Installing standart library directly from hub.oscript"/>
-    <Exec Command="$(PublishDir)opm install opm@1.0.2" />
+    <Exec Command="echo NOT WORKING on Compiler $(PublishDir)opm install opm@1.0.2" />
   </Target>
 
   <Target Name="ZipArtifacts" AfterTargets="InstallStandartLibrary">
