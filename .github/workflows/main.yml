@@ -23,8 +23,15 @@ jobs:
             RID: win-x64
             target: netcoreapp3.1
             targetid:  net3.1
+          - os: windows-latest
+            RID: win-x86
+            target: netcoreapp3.1
+            targetid:  net3.1
           - os: ubuntu-latest
             RID: linux-x64
+            target: netcoreapp3.1
+          - os: ubuntu-latest
+            RID: ocx-x64
             target: netcoreapp3.1
     defaults:
       run: 
