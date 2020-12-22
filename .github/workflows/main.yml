@@ -46,8 +46,15 @@ jobs:
         dotnet-version: ${{ matrix.dotnet-version }}
 
     # публикация
-    - name: BuildAndPublish
-      run: dotnet clean src/oscript/oscript.csproj && ${{matrix.testappbuild}} %% dotnet publish -p:PublishTrimmed=true -f ${{ matrix.target }} -p:DebugType=None -r ${{matrix.RID}}  -c Release --self-contained true --force -p:IncludeNativeLibrariesInSingleFile=true -p:CopyOutputSymbolsToPublishDirectory=false ${{env.MAIN_PROJECT}} -o distrs/${{matrix.targetid}}/${{matrix.RID}}/bin
+    - name: Очистка каталогов сборки
+      run: dotnet clean src/oscript/oscript.csproj 
+    
+    - name: Сборка тестовой консоли
+      run: ${{matrix.testappbuild}}
+
+    - name: Публикация полного дистрибутива
+      run: dotnet publish -p:PublishTrimmed=true -f ${{ matrix.target }} -p:DebugType=None -r ${{matrix.RID}}  -c Release --self-contained true --force -p:IncludeNativeLibrariesInSingleFile=true -p:CopyOutputSymbolsToPublishDirectory=false ${{env.MAIN_PROJECT}} -o distrs/${{matrix.targetid}}/${{matrix.RID}}/bin
+    
     # Заливка в артефакты
     - name: Artifact
       uses: actions/upload-artifact@v2
