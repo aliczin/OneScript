@@ -16,22 +16,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-latest, windows-latest, ubuntu-latest, macos-latest]
+        os: [windows-latest, ubuntu-latest]
         dotnet-version: [3.1.301]
         include:
           - os: windows-latest
             RID: win-x64
             target: netcoreapp3.1
             targetid:  net3.1
-          - os: windows-latest
-            RID: win-x86
-            target: netcoreapp3.1
-            targetid:  net3.1
           - os: ubuntu-latest
             RID: linux-x64
-            target: netcoreapp3.1
-          - os: macos-latest
-            RID: osx-x64
             target: netcoreapp3.1
     defaults:
       run: 
