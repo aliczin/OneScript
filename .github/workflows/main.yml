@@ -23,7 +23,7 @@ jobs:
             RID: win-x64
             target: netcoreapp3.1
             targetid:  net3.1
-            testappbuild: dotnet publish -p:PublishTrimmed=true -f netcoreapp3.1 -p:DebugType=None -r win-x64 -c Release --self-contained true --force -p:IncludeNativeLibrariesInSingleFile=true -p:CopyOutputSymbolsToPublishDirectory=false .\src\TestApp\TestApp.csproj -o distrs/net3.1/win-x64/bin
+            testappbuild: echo TestApp лучше распространять отдельно - он 133 метра вместе с runtime тянет
           - os: ubuntu-latest
             RID: linux-x64
             target: netcoreapp3.1
