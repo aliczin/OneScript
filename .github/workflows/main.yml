@@ -7,7 +7,7 @@ on:
       - feature/compiler-v2-with-publish
 
 env:
-  MAIN_PROJECT: ./src/oscript/oscript.csproj
+  MAIN_PROJECT: oscript/oscript.csproj
   SOLUTION: 1Script.sln
 
 jobs: 
