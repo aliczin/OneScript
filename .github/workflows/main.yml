@@ -23,10 +23,7 @@ jobs:
             RID: win-x64
             target: netcoreapp3.1
             targetid:  net3.1
-            testappbuild: dotnet publish -p:PublishTrimmed=true -f ${{ matrix.target }} -p:DebugType=None \
-              -r ${{matrix.RID}}  -c Release --self-contained true --force \
-              -p:IncludeNativeLibrariesInSingleFile=true -p:CopyOutputSymbolsToPublishDirectory=false \
-              .\src\TestApp\TestApp.csproj -o distrs/${{matrix.targetid}}/${{matrix.RID}}/bin
+            testappbuild: dotnet publish -p:PublishTrimmed=true -f ${{ matrix.target }} -p:DebugType=None -r ${{matrix.RID}}  -c Release --self-contained true --force -p:IncludeNativeLibrariesInSingleFile=true -p:CopyOutputSymbolsToPublishDirectory=false .\src\TestApp\TestApp.csproj -o distrs/${{matrix.targetid}}/${{matrix.RID}}/bin
           - os: ubuntu-latest
             RID: linux-x64
             target: netcoreapp3.1
@@ -50,12 +47,7 @@ jobs:
 
     # публикация
     - name: BuildAndPublish
-      run: dotnet clean src/oscript/oscript.csproj && \
-        dotnet publish -p:PublishTrimmed=true -f ${{ matrix.target }} -p:DebugType=None \
-          -r ${{matrix.RID}}  -c Release --self-contained true --force \
-          -p:IncludeNativeLibrariesInSingleFile=true -p:CopyOutputSymbolsToPublishDirectory=false \
-          ${{env.MAIN_PROJECT}} -o distrs/${{matrix.targetid}}/${{matrix.RID}}/bin
-
+      run: dotnet clean src/oscript/oscript.csproj && ${{matrix.testappbuild}} %% dotnet publish -p:PublishTrimmed=true -f ${{ matrix.target }} -p:DebugType=None -r ${{matrix.RID}}  -c Release --self-contained true --force -p:IncludeNativeLibrariesInSingleFile=true -p:CopyOutputSymbolsToPublishDirectory=false ${{env.MAIN_PROJECT}} -o distrs/${{matrix.targetid}}/${{matrix.RID}}/bin
     # Заливка в артефакты
     - name: Artifact
       uses: actions/upload-artifact@v2
