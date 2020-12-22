@@ -23,9 +23,15 @@ jobs:
             RID: win-x64
             target: netcoreapp3.1
             targetid:  net3.1
+            testappbuild: dotnet publish -p:PublishTrimmed=true -f ${{ matrix.target }} -p:DebugType=None \
+              -r ${{matrix.RID}}  -c Release --self-contained true --force \
+              -p:IncludeNativeLibrariesInSingleFile=true -p:CopyOutputSymbolsToPublishDirectory=false \
+              .\src\TestApp\TestApp.csproj -o distrs/${{matrix.targetid}}/${{matrix.RID}}/bin
           - os: ubuntu-latest
             RID: linux-x64
             target: netcoreapp3.1
+            targetid:  net3.1
+            testappbuild: echo TestApp only for windows
     defaults:
       run: 
         working-directory: .
@@ -44,7 +50,11 @@ jobs:
 
     # публикация
     - name: BuildAndPublish
-      run: dotnet clean src/oscript/oscript.csproj && dotnet publish -p:PublishTrimmed=true -f ${{ matrix.target }} -p:DebugType=None -r ${{matrix.RID}}  -c Release --self-contained true --force -p:IncludeNativeLibrariesInSingleFile=true -p:CopyOutputSymbolsToPublishDirectory=false ${{env.MAIN_PROJECT}} -o distrs/${{matrix.targetid}}/${{matrix.RID}}/bin
+      run: dotnet clean src/oscript/oscript.csproj && \
+        dotnet publish -p:PublishTrimmed=true -f ${{ matrix.target }} -p:DebugType=None \
+          -r ${{matrix.RID}}  -c Release --self-contained true --force \
+          -p:IncludeNativeLibrariesInSingleFile=true -p:CopyOutputSymbolsToPublishDirectory=false \
+          ${{env.MAIN_PROJECT}} -o distrs/${{matrix.targetid}}/${{matrix.RID}}/bin
 
     # Заливка в артефакты
     - name: Artifact
