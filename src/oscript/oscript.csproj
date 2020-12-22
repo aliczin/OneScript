@@ -67,28 +67,28 @@
 
   <ItemGroup>
      <ContentWithTargetPath 
-       Include="$(MSBuildThisFileDirectory)Resources\examples\*.*"
+       Include="$(MSBuildThisFileDirectory)..\..\install\examples\*.*"
        CopyToOutputDirectory="PreserveNewest"
        TargetPath="..\examples\%(Filename)%(Extension)" />
   </ItemGroup>
 
   <ItemGroup>
      <ContentWithTargetPath 
-       Include="$(MSBuildThisFileDirectory)Resources\doc\*.*"
+       Include="$(MSBuildThisFileDirectory)..\..\doctool\*.*"
        CopyToOutputDirectory="PreserveNewest"
        TargetPath="..\docs\%(Filename)%(Extension)" />
   </ItemGroup>
 
   <ItemGroup>
      <ContentWithTargetPath 
-       Include="$(MSBuildThisFileDirectory)Resources\lib\*.*"
+       Include="$(MSBuildThisFileDirectory)..\..\install\package-loader.os"
        CopyToOutputDirectory="PreserveNewest"
        TargetPath="..\lib\%(Filename)%(Extension)" />
   </ItemGroup>
 
     <Target Name="UnzipArchiveOSPX" BeforeTargets="Build">
       <Unzip
-          SourceFiles="Resources\opm\opm-1.0.2.ospx"
+          SourceFiles="$(MSBuildThisFileDirectory)..\..\install\opm-1.0.2.ospx"
           DestinationFolder="$(OutputPath)\lib\"
           OverwriteReadOnlyFiles="true"
        />
