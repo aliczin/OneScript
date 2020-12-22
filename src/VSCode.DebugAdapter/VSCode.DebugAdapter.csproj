@@ -15,7 +15,6 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.ServiceModel" />
-    <!-- для NetCore на будущее <PackageReference Include="System.ServiceModel.Primitives" Version="4.8.0" /> -->
 	  <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
   <ItemGroup>

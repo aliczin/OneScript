@@ -47,14 +47,14 @@
   <ItemGroup>
      <ContentWithTargetPath 
        Condition="'$(RuntimeIdentifier)' == 'win-x64' Or '$(RuntimeIdentifier)' == 'win-x86'"
-       Include="$(MSBuildThisFileDirectory)Resources\opm\opm.bat"
+       Include="$(MSBuildThisFileDirectory)..\..\install\opm.bat"
        CopyToOutputDirectory="PreserveNewest"
        TargetPath="%(Filename)%(Extension)" />
   </ItemGroup>
   <ItemGroup>
      <ContentWithTargetPath 
        Condition="'$(RuntimeIdentifier)' != 'win-x64' And '$(RuntimeIdentifier)' != 'win-x86'"
-       Include="$(MSBuildThisFileDirectory)Resources\opm\opm"
+       Include="$(MSBuildThisFileDirectory)..\..\install\opm"
        CopyToOutputDirectory="PreserveNewest"
        TargetPath="%(Filename)%(Extension)" />
   </ItemGroup>
@@ -112,7 +112,7 @@
 
   <Target AfterTargets="Publish" Name="InstallStandartLibrary">
     <Message Importance="High" Text="Installing standart library directly from hub.oscript"/>
-    <Exec Command="echo ending publish" />
+    <Exec Command="echo INVOKE opm install opm@1.0.2" />
   </Target>
 
   <Target Name="ZipArtifacts" AfterTargets="InstallStandartLibrary">
