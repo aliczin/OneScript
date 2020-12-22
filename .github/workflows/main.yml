@@ -23,7 +23,7 @@ jobs:
             RID: win-x64
             target: netcoreapp3.1
             targetid:  net3.1
-            testappbuild: dotnet publish -p:PublishTrimmed=true -f ${{ matrix.target }} -p:DebugType=None -r ${{matrix.RID}}  -c Release --self-contained true --force -p:IncludeNativeLibrariesInSingleFile=true -p:CopyOutputSymbolsToPublishDirectory=false .\src\TestApp\TestApp.csproj -o distrs/${{matrix.targetid}}/${{matrix.RID}}/bin
+            testappbuild: dotnet publish -p:PublishTrimmed=true -f netcoreapp3.1 -p:DebugType=None -r net3.1 -c Release --self-contained true --force -p:IncludeNativeLibrariesInSingleFile=true -p:CopyOutputSymbolsToPublishDirectory=false .\src\TestApp\TestApp.csproj -o distrs/net3.1/win-x64/bin
           - os: ubuntu-latest
             RID: linux-x64
             target: netcoreapp3.1
