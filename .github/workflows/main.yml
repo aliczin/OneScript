@@ -7,7 +7,7 @@ on:
       - feature/compiler-v2-with-publish
 
 env:
-  MAIN_PROJECT: oscript/oscript.csproj
+  MAIN_PROJECT: src/oscript/oscript.csproj
   SOLUTION: 1Script.sln
 
 jobs: 
@@ -22,12 +22,13 @@ jobs:
           - os: windows-latest
             RID: win-x64
             target: netcoreapp3.1
+            targetid:  net3.1
           - os: ubuntu-latest
             RID: linux-x64
             target: netcoreapp3.1
     defaults:
       run: 
-        working-directory: src
+        working-directory: .
     steps:
 
     # актуализация с сабмодулями
@@ -43,11 +44,11 @@ jobs:
 
     # публикация
     - name: BuildAndPublish
-      run: dotnet publish -p:PublishTrimmed=true -f ${{ matrix.target }} -p:DebugType=None -r ${{matrix.RID}}  -c Release --self-contained true --force -p:IncludeNativeLibrariesInSingleFile=true -p:CopyOutputSymbolsToPublishDirectory=false ${{env.MAIN_PROJECT}} -o distrs/${{matrix.target}}/${{matrix.RID}}/bin
+      run: dotnet publish -p:PublishTrimmed=true -f ${{ matrix.target }} -p:DebugType=None -r ${{matrix.RID}}  -c Release --self-contained true --force -p:IncludeNativeLibrariesInSingleFile=true -p:CopyOutputSymbolsToPublishDirectory=false ${{env.MAIN_PROJECT}} -o distrs/${{matrix.targetid}}/${{matrix.RID}}/bin
 
     # Заливка в артефакты
     - name: Artifact
       uses: actions/upload-artifact@v2
       with:
         name: oscript.v2-${{matrix.RID}}.zip
-        path: ./distrs/${{matrix.target}}/${{matrix.RID}}
+        path: distrs/${{matrix.targetid}}/${{matrix.RID}}
