@@ -51,7 +51,7 @@ jobs:
 
     # публикация
     - name: BuildAndPublish
-      run: dotnet clean src\oscript\oscript.csproj && dotnet publish -p:PublishTrimmed=true -f ${{ matrix.target }} -p:DebugType=None -r ${{matrix.RID}}  -c Release --self-contained true --force -p:IncludeNativeLibrariesInSingleFile=true -p:CopyOutputSymbolsToPublishDirectory=false ${{env.MAIN_PROJECT}} -o distrs/${{matrix.targetid}}/${{matrix.RID}}/bin
+      run: dotnet clean src/oscript/oscript.csproj && dotnet publish -p:PublishTrimmed=true -f ${{ matrix.target }} -p:DebugType=None -r ${{matrix.RID}}  -c Release --self-contained true --force -p:IncludeNativeLibrariesInSingleFile=true -p:CopyOutputSymbolsToPublishDirectory=false ${{env.MAIN_PROJECT}} -o distrs/${{matrix.targetid}}/${{matrix.RID}}/bin
 
     # Заливка в артефакты
     - name: Artifact
